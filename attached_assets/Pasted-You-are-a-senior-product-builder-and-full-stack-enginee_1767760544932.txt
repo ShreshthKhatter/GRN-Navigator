@@ -1,0 +1,99 @@
+You are a senior product builder and full-stack engineer.
+
+I will provide a Business Requirement Document (BRD).
+Your task is to build a production-grade mobile application prototype in Replit that fulfills the requirements exactly.
+
+APP TO BUILD: Mobile GRN (Goods Receipt Note) Application for SAP S/4HANA + VIM Workplace
+
+CORE OBJECTIVE:
+Allow warehouse and operations users to perform Goods Receipts from mobile/tablet without using SAP desktop VIM Workplace, and post GR directly into SAP S/4 which will automatically update VIM and clear invoice exceptions.
+
+MANDATORY FUNCTIONALITIES:
+1. LOGIN SYSTEM:
+   - Secure login page
+   - Support SSO / SAP IAS / Active Directory based authentication
+   - Role-based access (only Warehouse/Ops roles can perform GR)
+   - Maintain session security
+
+2. DASHBOARD:
+   - Show list of pending GRNs fetched from SAP VIM exceptions
+   - Include filters (PO number, date, vertical, account, geography)
+   - Display GRN status (Pending, Completed, Error)
+   - Search bar to quickly find PO or invoice
+
+3. GRN CREATION SCREEN:
+   - Input fields required:
+       PO number
+       PO line item
+       GR quantity
+       Storage / warehouse location
+   - Validate input before submission
+   - Prevent incorrect or excess quantity submission
+
+4. ATTACHMENT UPLOAD:
+   - Allow upload of:
+       Delivery challan (photo/file)
+       Goods received images
+       Inspection comments
+   - Support camera capture from mobile
+   - Store attachments securely
+
+5. SAP S/4HANA INTEGRATION:
+   - GR must be posted directly into SAP using Movement Type 101
+   - After successful posting:
+        App updates SAP
+        SAP updates VIM document
+        VIM exception clears automatically
+   - Handle API errors gracefully
+
+6. NOTIFICATIONS SYSTEM:
+   - Notify users when:
+       GR is pending
+       GR is successfully posted
+       Errors occur (closed PO, blocked PO, quantity mismatch, etc.)
+   - Use push-style notification simulation in prototype
+
+7. OFFLINE MODE (OPTIONAL BUT GOOD TO HAVE):
+   - Cache pending GRNs locally if network is low
+   - Auto-sync when network restores
+
+TECHNICAL REQUIREMENTS:
+- Tech stack should be modern and Replit-compatible
+- UI must be mobile-optimized, clean, and fast
+- Use a blue-white theme inspired by corporate enterprise products
+- Keep code modular, scalable, and well commented
+- Include a backend API layer that simulates:
+    Fetching pending GRNs from SAP
+    Posting GR to SAP S/4
+    Updating VIM document status
+- Store data temporarily using Replit DB or local JSON mock if needed
+
+UI/UX GUIDELINES:
+- Mobile-first responsive interface
+- Large tap-friendly buttons
+- Clean minimal enterprise layout
+- Status badges for GRN states
+- Toast/snackbar alerts for success and error
+- Loading states during SAP sync
+
+DELIVERABLES:
+- A working prototype (frontend + backend)
+- Mock SAP API integration layer
+- GRN submission flow working end-to-end
+- File upload working from mobile view
+- Login + role auth enforced
+- Dashboard listing pending GRNs
+
+IMPORTANT RULES:
+- Do NOT skip any BRD requirement
+- Do NOT build a desktop-only app
+- Do NOT fake SAP posting success without validation
+- Ensure the flow mimics real enterprise integration logic
+
+Once built, also generate:
+- Setup instructions
+- API endpoint list
+- Folder structure explanation
+- Suggestions for future improvements
+
+Now begin building the app.
