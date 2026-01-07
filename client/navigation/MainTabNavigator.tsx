@@ -2,13 +2,16 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
-import { Platform, StyleSheet } from "react-native";
-import HomeStackNavigator from "@/navigation/HomeStackNavigator";
+import { Platform, StyleSheet, View } from "react-native";
+import DashboardStackNavigator from "@/navigation/DashboardStackNavigator";
+import CreateGRStackNavigator from "@/navigation/CreateGRStackNavigator";
 import ProfileStackNavigator from "@/navigation/ProfileStackNavigator";
 import { useTheme } from "@/hooks/useTheme";
+import { Colors } from "@/constants/theme";
 
 export type MainTabParamList = {
-  HomeTab: undefined;
+  DashboardTab: undefined;
+  CreateGRTab: undefined;
   ProfileTab: undefined;
 };
 
@@ -19,7 +22,7 @@ export default function MainTabNavigator() {
 
   return (
     <Tab.Navigator
-      initialRouteName="HomeTab"
+      initialRouteName="DashboardTab"
       screenOptions={{
         tabBarActiveTintColor: theme.tabIconSelected,
         tabBarInactiveTintColor: theme.tabIconDefault,
@@ -44,12 +47,29 @@ export default function MainTabNavigator() {
       }}
     >
       <Tab.Screen
-        name="HomeTab"
-        component={HomeStackNavigator}
+        name="DashboardTab"
+        component={DashboardStackNavigator}
         options={{
-          title: "Home",
+          title: "Dashboard",
           tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size} color={color} />
+            <Feather name="list" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="CreateGRTab"
+        component={CreateGRStackNavigator}
+        options={{
+          title: "Create GR",
+          tabBarIcon: ({ color, size, focused }) => (
+            <View
+              style={[
+                styles.centerTab,
+                { backgroundColor: focused ? Colors.light.primary : theme.backgroundTertiary },
+              ]}
+            >
+              <Feather name="plus" size={size} color={focused ? "#FFFFFF" : color} />
+            </View>
           ),
         }}
       />
@@ -66,3 +86,14 @@ export default function MainTabNavigator() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  centerTab: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: -8,
+  },
+});
