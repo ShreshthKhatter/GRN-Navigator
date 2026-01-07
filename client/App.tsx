@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -25,9 +24,7 @@ export default function App() {
               <GestureHandlerRootView style={styles.root}>
                 <KeyboardProvider>
                   <ToastProvider>
-                    <NavigationContainer>
-                      <RootStackNavigator />
-                    </NavigationContainer>
+                    <RootStackNavigator />
                   </ToastProvider>
                   <StatusBar style="auto" />
                 </KeyboardProvider>

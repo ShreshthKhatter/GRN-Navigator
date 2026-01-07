@@ -1,5 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 import MainTabNavigator from "@/navigation/MainTabNavigator";
 import LoginScreen from "@/screens/LoginScreen";
@@ -29,31 +30,33 @@ export default function RootStackNavigator() {
   }
 
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
-      {!isAuthenticated ? (
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-      ) : (
-        <>
+    <NavigationContainer key={isAuthenticated ? "auth" : "guest"}>
+      <Stack.Navigator screenOptions={screenOptions}>
+        {!isAuthenticated ? (
           <Stack.Screen
-            name="Main"
-            component={MainTabNavigator}
+            name="Login"
+            component={LoginScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen
-            name="GRNDetail"
-            component={GRNDetailScreen}
-            options={{
-              presentation: "modal",
-              headerTitle: "GRN Details",
-            }}
-          />
-        </>
-      )}
-    </Stack.Navigator>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Main"
+              component={MainTabNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="GRNDetail"
+              component={GRNDetailScreen}
+              options={{
+                presentation: "modal",
+                headerTitle: "GRN Details",
+              }}
+            />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
