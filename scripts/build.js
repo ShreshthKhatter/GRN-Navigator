@@ -1,10 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const { spawn } = require("child_process");
+const { execSync, spawn } = require("child_process");
 const { Readable } = require("stream");
 const { pipeline } = require("stream/promises");
 
 let metroProcess = null;
+const HARDCODED_PRODUCTION_DOMAIN = "indigoshreshth.az.replit.app";
 
 function exitWithError(message) {
   console.error(message);
@@ -39,23 +40,23 @@ function stripProtocol(domain) {
 }
 
 function getDeploymentDomain() {
-  // Check Replit deployment environment variables first
   if (process.env.REPLIT_INTERNAL_APP_DOMAIN) {
+    console.log("Using REPLIT_INTERNAL_APP_DOMAIN:", process.env.REPLIT_INTERNAL_APP_DOMAIN);
     return stripProtocol(process.env.REPLIT_INTERNAL_APP_DOMAIN);
   }
 
   if (process.env.REPLIT_DEV_DOMAIN) {
+    console.log("Using REPLIT_DEV_DOMAIN:", process.env.REPLIT_DEV_DOMAIN);
     return stripProtocol(process.env.REPLIT_DEV_DOMAIN);
   }
 
   if (process.env.EXPO_PUBLIC_DOMAIN) {
+    console.log("Using EXPO_PUBLIC_DOMAIN:", process.env.EXPO_PUBLIC_DOMAIN);
     return stripProtocol(process.env.EXPO_PUBLIC_DOMAIN);
   }
 
-  console.error(
-    "ERROR: No deployment domain found. Set REPLIT_INTERNAL_APP_DOMAIN, REPLIT_DEV_DOMAIN, or EXPO_PUBLIC_DOMAIN",
-  );
-  process.exit(1);
+  console.log("No environment domain found, using hardcoded production domain:", HARDCODED_PRODUCTION_DOMAIN);
+  return HARDCODED_PRODUCTION_DOMAIN;
 }
 
 function prepareDirectories(timestamp) {
@@ -468,6 +469,23 @@ function updateManifests(manifests, timestamp, baseUrl, assetsByHash) {
     manifest.extra.expoGo.debuggerHost =
       baseUrl.replace("https://", "") + "/" + platform;
     manifest.extra.expoGo.packagerOpts.dev = false;
+
+    if (manifest.extra.expoClient.iconUrl) {
+      manifest.extra.expoClient.iconUrl = `${baseUrl}/assets/images/icon.png`;
+    }
+
+    if (manifest.extra.expoClient.android?.adaptiveIcon) {
+      const ai = manifest.extra.expoClient.android.adaptiveIcon;
+      if (ai.foregroundImageUrl) {
+        ai.foregroundImageUrl = `${baseUrl}/assets/images/android-icon-foreground.png`;
+      }
+      if (ai.backgroundImageUrl) {
+        ai.backgroundImageUrl = `${baseUrl}/assets/images/android-icon-background.png`;
+      }
+      if (ai.monochromeImageUrl) {
+        ai.monochromeImageUrl = `${baseUrl}/assets/images/android-icon-monochrome.png`;
+      }
+    }
 
     if (manifest.assets && manifest.assets.length > 0) {
       manifest.assets.forEach((asset) => {
