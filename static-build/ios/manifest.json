@@ -1,11 +1,11 @@
 {
-  "id": "5851081c-8a01-4baa-9726-92dcf3e2d323",
-  "createdAt": "2026-01-07T07:48:26.321Z",
+  "id": "a95d5b88-10dd-4c43-b0ca-af35a527f549",
+  "createdAt": "2026-01-13T08:33:13.985Z",
   "runtimeVersion": "exposdk:54.0.0",
   "launchAsset": {
-    "key": "bundle-1767772106321-3379",
+    "key": "bundle-1768293193985-955",
     "contentType": "application/javascript",
-    "url": "https://9bdcfb71-02dc-468d-b6c5-cbeec4e6f303-00-365i61mmoz0sw.janeway.replit.dev/1767772106321-3379/_expo/static/js/ios/bundle.js"
+    "url": "https://indigoshreshth.az.replit.app/1768293193985-955/_expo/static/js/ios/bundle.js"
   },
   "assets": [],
   "metadata": {},
@@ -87,10 +87,10 @@
         "backgroundColor": "#0070F3"
       },
       "iconUrl": "https://9bdcfb71-02dc-468d-b6c5-cbeec4e6f303-00-365i61mmoz0sw.janeway.replit.dev/assets/./assets/images/icon.png",
-      "hostUri": "9bdcfb71-02dc-468d-b6c5-cbeec4e6f303-00-365i61mmoz0sw.janeway.replit.dev/ios"
+      "hostUri": "indigoshreshth.az.replit.app/ios"
     },
     "expoGo": {
-      "debuggerHost": "9bdcfb71-02dc-468d-b6c5-cbeec4e6f303-00-365i61mmoz0sw.janeway.replit.dev/ios",
+      "debuggerHost": "indigoshreshth.az.replit.app/ios",
       "developer": {
         "tool": "expo-cli",
         "projectRoot": "/home/runner/workspace"
@@ -100,6 +100,6 @@
       },
       "mainModuleName": "client/index"
     },
-    "scopeKey": "@anonymous/mobile-grn-c31453b1-411c-475b-9074-6db374273718"
+    "scopeKey": "@anonymous/mobile-grn-46088fba-e80f-4542-a0d6-f7ff8b2a7e9e"
   }
 }

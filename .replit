@@ -54,3 +54,8 @@ task = "shell.exec"
 args = "npm run expo:dev"
 waitForPort = 8081
 ensurePreviewReachable = "/status"
+
+[userenv]
+
+[userenv.production]
+REPLIT_INTERNAL_APP_DOMAIN = "indigoshreshth.az.replit.app"
