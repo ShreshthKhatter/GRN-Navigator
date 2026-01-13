@@ -157,6 +157,42 @@
         width: 18px;
         height: 18px;
       }
+      .step-icon {
+        width: 24px;
+        height: 24px;
+        color: #0070F3;
+      }
+      .btn-icon {
+        width: 16px;
+        height: 16px;
+      }
+      .primary-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 24px;
+        font-size: 15px;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #fff;
+        background: #0070F3;
+        transition: all 0.15s;
+        cursor: pointer;
+      }
+      .primary-button:hover {
+        background: #0060D0;
+      }
+      .web-section {
+        background: linear-gradient(135deg, #f0f7ff 0%, #e8f2ff 100%);
+        border-color: #0070F3;
+        border-width: 2px;
+      }
+      .web-section .step-icon {
+        color: #0070F3;
+      }
 
       .qr-section {
         background: #333;
@@ -325,6 +361,20 @@
         .open-button:hover {
           background: #e0e0e0;
         }
+        .web-section {
+          background: linear-gradient(135deg, #1a2a3a 0%, #0d1a2a 100%);
+          border-color: #0070F3;
+        }
+        .primary-button {
+          background: #0070F3;
+          color: #fff;
+        }
+        .primary-button:hover {
+          background: #0060D0;
+        }
+        .step-icon {
+          color: #4da3ff;
+        }
       }
     </style>
   </head>
@@ -337,16 +387,40 @@
 
       <div class="content" id="content">
         <h1>APP_NAME_PLACEHOLDER</h1>
-        <p class="subtitle">Preview this app on your phone</p>
+        <p class="subtitle">Preview this app in your browser or on your mobile device</p>
 
         <div class="steps-container">
-          <div class="step">
+          <div class="step web-section">
             <div class="step-header">
-              <div class="step-number">1</div>
-              <h2 class="step-title">Download Expo Go</h2>
+              <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <h2 class="step-title">View in Browser</h2>
             </div>
             <p class="step-description">
-              Expo Go is a free app to test mobile apps
+              Open the app directly in your web browser - no installation needed
+            </p>
+            <a href="BASE_URL_PLACEHOLDER/web" class="primary-button">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Open Web App
+            </a>
+          </div>
+
+          <div class="step">
+            <div class="step-header">
+              <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+              <h2 class="step-title">Mobile App</h2>
+            </div>
+            <p class="step-description">
+              Get the native mobile experience with Expo Go
             </p>
             <div class="store-buttons" id="store-buttons">
               <a
@@ -380,7 +454,12 @@
 
           <div class="step qr-section">
             <div class="step-header">
-              <div class="step-number">2</div>
+              <svg class="step-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
+              </svg>
               <h2 class="step-title">Scan QR Code</h2>
             </div>
             <p class="step-description">Use your phone's camera or Expo Go</p>

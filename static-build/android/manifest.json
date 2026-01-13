@@ -1,11 +1,11 @@
 {
-  "id": "e7b289ab-734d-4b00-b9d6-9e36c7ab5c1f",
-  "createdAt": "2026-01-13T09:20:38.614Z",
+  "id": "7f1c6089-7646-42ed-bdd0-a8bd5299173a",
+  "createdAt": "2026-01-13T10:28:33.737Z",
   "runtimeVersion": "exposdk:54.0.0",
   "launchAsset": {
-    "key": "bundle-1768296038614-1200",
+    "key": "bundle-1768300113737-3592",
     "contentType": "application/javascript",
-    "url": "https://indigoshreshth.az.replit.app/1768296038614-1200/_expo/static/js/android/bundle.js"
+    "url": "https://indigoshreshth.az.replit.app/1768300113737-3592/_expo/static/js/android/bundle.js"
   },
   "assets": [],
   "metadata": {},

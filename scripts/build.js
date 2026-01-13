@@ -71,6 +71,7 @@ function prepareDirectories(timestamp) {
     path.join("static-build", timestamp, "_expo", "static", "js", "android"),
     path.join("static-build", "ios"),
     path.join("static-build", "android"),
+    path.join("static-build", "web"),
   ];
 
   for (const dir of dirs) {
@@ -78,6 +79,36 @@ function prepareDirectories(timestamp) {
   }
 
   console.log("Build:", timestamp);
+}
+
+function buildWebExport(domain) {
+  console.log("Building web export...");
+  
+  if (fs.existsSync("dist")) {
+    fs.rmSync("dist", { recursive: true });
+  }
+
+  try {
+    execSync(`EXPO_PUBLIC_DOMAIN=${domain} npx expo export --platform web --output-dir dist`, {
+      stdio: "inherit",
+      env: {
+        ...process.env,
+        EXPO_PUBLIC_DOMAIN: domain,
+      },
+    });
+
+    if (fs.existsSync("dist")) {
+      const webDir = path.join("static-build", "web");
+      fs.cpSync("dist", webDir, { recursive: true });
+      fs.rmSync("dist", { recursive: true });
+      console.log("Web export completed");
+    } else {
+      console.warn("Warning: Web export did not produce output");
+    }
+  } catch (error) {
+    console.error("Web export failed:", error.message);
+    console.log("Continuing without web export...");
+  }
 }
 
 function clearMetroCache() {
@@ -513,7 +544,7 @@ function updateManifests(manifests, timestamp, baseUrl, assetsByHash) {
 }
 
 async function main() {
-  console.log("Building static Expo Go deployment...");
+  console.log("Building static Expo Go and web deployment...");
 
   setupSignalHandlers();
 
@@ -523,6 +554,8 @@ async function main() {
 
   prepareDirectories(timestamp);
   clearMetroCache();
+
+  buildWebExport(domain);
 
   await startMetro(domain);
 
